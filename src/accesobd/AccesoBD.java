@@ -10,6 +10,7 @@ package accesobd;
  *
  */
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -67,8 +68,9 @@ public class AccesoBD {
                 if (data.get(i) instanceof Boolean) {
                     proc.setBoolean(i + 1, (Boolean) data.get(i));
                 }
-                if (data.get(i) instanceof Date) {
-                    proc.setDate(i + 1, (Date) data.get(i));
+                if (data.get(i) instanceof LocalDate) {
+                    LocalDate fecha = (LocalDate) data.get(i);
+                    proc.setDate(i + 1, Date.valueOf(fecha));
                 }
             }
             proc.executeUpdate();
