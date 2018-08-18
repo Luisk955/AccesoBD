@@ -84,11 +84,21 @@ public class AccesoBD {
         proc.setInt(1, num);
         proc.executeUpdate();
     }
-    
+
     public ResultSet ejecutarSQL(int num, String query, boolean result) throws SQLException, Exception {
         ResultSet rs;
         proc = conn.prepareCall(query);
         proc.setInt(1, num);
+        proc.executeUpdate();
+        rs = proc.getResultSet();
+        return rs;
+    }
+
+    public ResultSet ejecutarSQL(String correo, String pass, String query, boolean result) throws SQLException, Exception {
+        ResultSet rs;
+        proc = conn.prepareCall(query);
+        proc.setString(1, correo);
+        proc.setString(2, pass);
         proc.executeUpdate();
         rs = proc.getResultSet();
         return rs;
