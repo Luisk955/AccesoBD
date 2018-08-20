@@ -85,6 +85,13 @@ public class AccesoBD {
         proc.executeUpdate();
     }
 
+    public void ejecutarSQL(int num, int num2, String query) throws SQLException, Exception {
+        proc = conn.prepareCall(query);
+        proc.setInt(1, num);
+        proc.setInt(2, num2);
+        proc.executeUpdate();
+    }
+
     public ResultSet ejecutarSQL(int num, String query, boolean result) throws SQLException, Exception {
         ResultSet rs;
         proc = conn.prepareCall(query);
@@ -93,7 +100,7 @@ public class AccesoBD {
         rs = proc.getResultSet();
         return rs;
     }
-    
+
     public ResultSet ejecutarSQL(String value, String query, boolean result) throws SQLException, Exception {
         ResultSet rs;
         proc = conn.prepareCall(query);
@@ -108,16 +115,6 @@ public class AccesoBD {
         proc = conn.prepareCall(query);
         proc.setString(1, correo);
         proc.setString(2, pass);
-        proc.executeUpdate();
-        rs = proc.getResultSet();
-        return rs;
-    }
-    
-    public ResultSet ejecutarSQL(int correo, int pass, String query, boolean result) throws SQLException, Exception {
-        ResultSet rs;
-        proc = conn.prepareCall(query);
-        proc.setInt(1, correo);
-        proc.setInt(2, pass);
         proc.executeUpdate();
         rs = proc.getResultSet();
         return rs;
