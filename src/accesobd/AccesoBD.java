@@ -112,6 +112,16 @@ public class AccesoBD {
         rs = proc.getResultSet();
         return rs;
     }
+    
+    public ResultSet ejecutarSQL(int correo, int pass, String query, boolean result) throws SQLException, Exception {
+        ResultSet rs;
+        proc = conn.prepareCall(query);
+        proc.setInt(1, correo);
+        proc.setInt(2, pass);
+        proc.executeUpdate();
+        rs = proc.getResultSet();
+        return rs;
+    }
 
     public void ejecutarSQL(String sentencia) throws SQLException, Exception {
         st.execute(sentencia);
